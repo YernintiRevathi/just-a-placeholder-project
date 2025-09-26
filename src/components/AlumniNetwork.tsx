@@ -24,9 +24,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 const AlumniNetwork = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedSchool, setSelectedSchool] = useState("");
-  const [selectedProfession, setSelectedProfession] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedSchool, setSelectedSchool] = useState("all");
+  const [selectedProfession, setSelectedProfession] = useState("all");
+  const [selectedYear, setSelectedYear] = useState("all");
 
   // Mock alumni data
   const alumni = [
@@ -104,9 +104,9 @@ const AlumniNetwork = () => {
     const matchesSearch = person.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          person.currentRole.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          person.company.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesSchool = !selectedSchool || person.school === selectedSchool;
-    const matchesProfession = !selectedProfession || person.currentRole === selectedProfession;
-    const matchesYear = !selectedYear || (
+    const matchesSchool = selectedSchool ==="all" || person.school === selectedSchool;
+    const matchesProfession = selectedProfession ==="all" || person.currentRole === selectedProfession;
+    const matchesYear = selectedYear ==="all"  || (
       selectedYear === "2008-2012" && person.graduationYear >= 2008 && person.graduationYear <= 2012 ||
       selectedYear === "2013-2017" && person.graduationYear >= 2013 && person.graduationYear <= 2017 ||
       selectedYear === "2018-2022" && person.graduationYear >= 2018 && person.graduationYear <= 2022 ||
@@ -155,7 +155,7 @@ const AlumniNetwork = () => {
                   <SelectValue placeholder="School" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Schools</SelectItem>
+                  <SelectItem value="all">All Schools</SelectItem>
                   {schools.map((school) => (
                     <SelectItem key={school} value={school}>{school}</SelectItem>
                   ))}
@@ -167,7 +167,7 @@ const AlumniNetwork = () => {
                   <SelectValue placeholder="Profession" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Professions</SelectItem>
+                  <SelectItem value="all">All Professions</SelectItem>
                   {professions.map((profession) => (
                     <SelectItem key={profession} value={profession}>{profession}</SelectItem>
                   ))}
@@ -179,7 +179,7 @@ const AlumniNetwork = () => {
                   <SelectValue placeholder="Graduation Year" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Years</SelectItem>
+                  <SelectItem value="all">All Years</SelectItem>
                   {years.map((year) => (
                     <SelectItem key={year} value={year}>{year}</SelectItem>
                   ))}
