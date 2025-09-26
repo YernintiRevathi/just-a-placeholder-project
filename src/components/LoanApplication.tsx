@@ -6,16 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { 
-  CreditCard, 
-  GraduationCap, 
-  Calculator, 
-  CheckCircle, 
-  Clock,
-  IndianRupee,
-  FileText,
-  Users
-} from "lucide-react";
+import { CreditCard, GraduationCap, Calculator, CircleCheck as CheckCircle, Clock, IndianRupee, FileText, Users } from "lucide-react";
 
 const LoanApplication = () => {
   const [selectedClass, setSelectedClass] = useState("");

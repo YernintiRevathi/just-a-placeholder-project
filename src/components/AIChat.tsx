@@ -3,20 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { 
-  MessageCircle, 
-  Send, 
-  Bot, 
-  User, 
-  X, 
-  Minimize2, 
-  Maximize2,
-  Sparkles,
-  HelpCircle,
-  School,
-  CreditCard,
-  Users
-} from "lucide-react";
+import { MessageCircle, Send, Bot, User, X, Minimize2, Maximize2, Sparkles, CircleHelp as HelpCircle, School, CreditCard, Users } from "lucide-react";
 
 interface Message {
   id: string;

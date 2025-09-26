@@ -3,22 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Award, 
-  Search, 
-  Calendar, 
-  IndianRupee, 
-  Users, 
-  BookOpen,
-  Filter,
-  ExternalLink,
-  Clock,
-  CheckCircle,
-  AlertCircle,
-  GraduationCap,
-  Heart,
-  Trophy
-} from "lucide-react";
+import { Award, Search, Calendar, IndianRupee, Users, BookOpen, Filter, ExternalLink, Clock, CircleCheck as CheckCircle, CircleAlert as AlertCircle, GraduationCap, Heart, Trophy } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const ScholarshipFinder = () => {
