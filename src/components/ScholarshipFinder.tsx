@@ -8,9 +8,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 const ScholarshipFinder = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedClass, setSelectedClass] = useState("");
-  const [selectedAmount, setSelectedAmount] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedClass, setSelectedClass] = useState("all");
+  const [selectedAmount, setSelectedAmount] = useState("all");
 
   // Mock scholarship data
   const scholarships = [
@@ -132,8 +132,8 @@ const ScholarshipFinder = () => {
     const matchesSearch = scholarship.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          scholarship.provider.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          scholarship.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = !selectedCategory || scholarship.category === selectedCategory;
-    const matchesClass = !selectedClass || scholarship.eligibility.toLowerCase().includes(selectedClass.toLowerCase());
+    const matchesCategory = selectedCategory ==="all" || scholarship.category === selectedCategory;
+    const matchesClass = selectedClass==="all" || scholarship.eligibility.toLowerCase().includes(selectedClass.toLowerCase());
     
     let matchesAmount = true;
     if (selectedAmount) {
@@ -226,7 +226,7 @@ const ScholarshipFinder = () => {
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Categories</SelectItem>
+                  <SelectItem value="all">All Categories</SelectItem>
                   {categories.map((category) => (
                     <SelectItem key={category} value={category}>{category}</SelectItem>
                   ))}
@@ -238,7 +238,7 @@ const ScholarshipFinder = () => {
                   <SelectValue placeholder="Class/Level" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Levels</SelectItem>
+                  <SelectItem value="all">All Levels</SelectItem>
                   {classes.map((cls) => (
                     <SelectItem key={cls} value={cls}>{cls}</SelectItem>
                   ))}
@@ -250,7 +250,7 @@ const ScholarshipFinder = () => {
                   <SelectValue placeholder="Amount" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Amounts</SelectItem>
+                  <SelectItem value="all">All Amounts</SelectItem>
                   {amounts.map((amount) => (
                     <SelectItem key={amount} value={amount}>{amount}</SelectItem>
                   ))}
