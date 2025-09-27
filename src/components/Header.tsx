@@ -1,11 +1,18 @@
+// src/components/Header.tsx
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { Menu, X, Phone, User } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
+import { Button } from "./ui/button";
+import { Menu, X, Phone, User, LogOut } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const { t } = useTranslation();
 
   return (
     <header className="bg-background border-b border-border shadow-soft sticky top-0 z-50">
@@ -18,61 +25,44 @@ const Header = () => {
               +91 9811247700
             </span>
           </div>
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
-              <User className="w-4 h-4 mr-1" />
-              Login
-            </Button>
+          <div className="flex items-center space-x-2">
+            {/* --- DYNAMIC AUTH BUTTONS --- */}
+            {user ? (
+              <>
+                <span className="text-sm text-muted-foreground">Welcome, {user.name}!</span>
+                <Button variant="ghost" size="sm" onClick={logout} className="text-muted-foreground hover:text-primary">
+                  <LogOut className="w-4 h-4 mr-1" /> Logout
+                </Button>
+              </>
+            ) : (
+              <Button asChild variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                <Link to="/login"><User className="w-4 h-4 mr-1" />{t('header.login')}</Link>
+              </Button>
+            )}
+            <LanguageToggle />
             <ThemeToggle />
-            <select className="bg-transparent text-muted-foreground text-sm border-none outline-none">
-              <option>EN</option>
-              <option>HI</option>
-              <option>BN</option>
-            </select>
           </div>
         </div>
 
         {/* Main navigation */}
         <div className="flex items-center justify-between py-4">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold gradient-text-primary hover:opacity-80 transition-opacity">
-              SchoolDekho
-            </Link>
-          </div>
+          <Link to="/" className="flex items-center">
+            <h1 className="text-2xl font-bold gradient-text-primary">SchoolDekho</h1>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium">
-              Schools in City
-            </Link>
-            <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium">
-              Boarding Schools
-            </Link>
-            <Link to="/education-loans" className="text-foreground hover:text-primary transition-colors font-medium">
-              Education Loans
-            </Link>
-            <Link to="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium">
-              Scholarships
-            </Link>
-            <Link to="/alumni-network" className="text-foreground hover:text-primary transition-colors font-medium">
-              Alumni Network
-            </Link>
-            <Link to="/fundraising" className="text-foreground hover:text-primary transition-colors font-medium">
-              Fundraising
-            </Link>
-            <Button variant="default" className="bg-gradient-secondary text-secondary-foreground hover:bg-secondary-hover">
-              Register School
-            </Button>
+          {/* --- ALL NAVIGATION LINKS ARE HERE --- */}
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium">{t('header.home')}</Link>
+            <Link to="/schools" className="text-foreground hover:text-primary transition-colors font-medium">{t('header.schools_in_city')}</Link>
+            <Link to="/education-loans" className="text-foreground hover:text-primary transition-colors font-medium">{t('header.education_loans')}</Link>
+            <Link to="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium">{t('header.scholarships')}</Link>
+            <Link to="/alumni-network" className="text-foreground hover:text-primary transition-colors font-medium">{t('header.alumni_network')}</Link>
+            <Link to="/fundraising" className="text-foreground hover:text-primary transition-colors font-medium">{t('header.fundraising')}</Link>
+            <Button asChild><Link to="/register-school">{t('header.register_school')}</Link></Button>
           </nav>
 
           {/* Mobile menu button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
+          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>
         </div>
@@ -80,36 +70,20 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden py-4 animate-fade-in">
-            <div className="flex items-center justify-between p-2 border-b mb-4">
-              <Button variant="outline" className="flex-1 mr-2">
-                <User className="w-4 h-4 mr-1" />
-                Login
-              </Button>
-              <ThemeToggle />
-            </div>
             <nav className="flex flex-col space-y-4">
-              <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
-                Schools in City
-              </Link>
-              <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
-                Boarding Schools
-              </Link>
-              <Link to="/education-loans" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
-                Education Loans
-              </Link>
-              <Link to="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
-                Scholarships
-              </Link>
-              <Link to="/alumni-network" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
-                Alumni Network
-              </Link>
-              <Link to="/fundraising" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
-                Fundraising
-              </Link>
-              <div className="pt-2">
-                <Button variant="default" className="w-full bg-gradient-secondary text-secondary-foreground hover:bg-secondary-hover">
-                  Register School
-                </Button>
+              <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium py-2">{t('header.home')}</Link>
+              <Link to="/schools" className="text-foreground hover:text-primary transition-colors font-medium py-2">{t('header.schools_in_city')}</Link>
+              <Link to="/education-loans" className="text-foreground hover:text-primary transition-colors font-medium py-2">{t('header.education_loans')}</Link>
+              <Link to="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium py-2">{t('header.scholarships')}</Link>
+              <Link to="/alumni-network" className="text-foreground hover:text-primary transition-colors font-medium py-2">{t('header.alumni_network')}</Link>
+              <Link to="/fundraising" className="text-foreground hover:text-primary transition-colors font-medium py-2">{t('header.fundraising')}</Link>
+              <div className="pt-2 space-y-2">
+                <Button asChild className="w-full"><Link to="/register-school">{t('header.register_school')}</Link></Button>
+                {user ? (
+                   <Button variant="outline" className="w-full" onClick={logout}><LogOut className="w-4 h-4 mr-1" /> Logout</Button>
+                ) : (
+                  <Button asChild variant="outline" className="w-full"><Link to="/login"><User className="w-4 h-4 mr-1" />{t('header.login')}</Link></Button>
+                )}
               </div>
             </nav>
           </div>

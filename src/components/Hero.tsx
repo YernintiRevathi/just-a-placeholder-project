@@ -6,25 +6,6 @@ import { Search, MapPin, GraduationCap } from "lucide-react";
 import heroImage from "@/assets/hero-education.jpg";
 
 const Hero = () => {
-  const [searchLocation, setSearchLocation] = useState("");
-  const [schoolType, setSchoolType] = useState("");
-
-  const schoolTypes = [
-    "Day School",
-    "Pre School",
-    "Boarding School",
-    "PU Junior College",
-    "International School",
-    "Montessori School"
-  ];
-
-  const popularFilters = [
-    "< ₹30K", "₹30K - ₹50K", "₹50K - ₹70K", "₹70K - ₹1L", 
-    "₹1L - ₹2L", "₹2L - ₹3L", "₹3L - ₹5L", "> ₹5L"
-  ];
-
-  const boardTypes = ["CBSE", "ICSE/ISC", "IB", "IGCSE", "State Board"];
-  const regions = ["North India", "South India", "East India", "West India", "Central India"];
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
@@ -58,96 +39,6 @@ const Hero = () => {
               Search the best schools from a list of 25,000+ schools located across India. 
               SchoolDekho offers personalized counseling support to help you find exactly what you're looking for.
             </p>
-          </div>
-
-          {/* Search Form */}
-          <div className="bg-white/95 dark:bg-[#0D1B2A] backdrop-blur-sm rounded-xl p-6 shadow-lg dark:shadow-2xl animate-slide-up">
-            <div className="grid md:grid-cols-3 gap-4 mb-6">
-              <div className="space-y-2">
-                <Select value={schoolType} onValueChange={setSchoolType}>
-                  <SelectTrigger className="h-12 bg-background dark:bg-[#1B263B] border-border dark:border-[#415A77] text-foreground dark:text-white">
-                    <SelectValue placeholder="Select School Type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {schoolTypes.map((type) => (
-                      <SelectItem key={type} value={type}>
-                        {type}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-2">
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-                  <Input
-                    value={searchLocation}
-                    onChange={(e) => setSearchLocation(e.target.value)}
-                    placeholder="Please type school name or location"
-                    className="h-12 pl-10 bg-background dark:bg-[#1B263B] border-border dark:border-[#415A77] text-foreground dark:text-white placeholder:text-muted-foreground dark:placeholder:text-gray-400"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Button className="h-12 w-full bg-[#FF8C42] hover:bg-[#FF701F] text-black font-semibold text-lg">
-                  <Search className="w-5 h-5 mr-2" />
-                  Search Schools
-                </Button>
-              </div>
-            </div>
-
-            {/* Quick Filters */}
-            <div className="space-y-4">
-              <h3 className="text-foreground dark:text-gray-300 font-semibold text-center">Search by Filters</h3>
-              
-              {/* Fee Range Filters */}
-              <div className="space-y-2">
-                <p className="text-muted-foreground dark:text-gray-400 text-sm font-medium text-center">Fee Range (Annual)</p>
-                <div className="flex flex-wrap gap-2">
-                  {popularFilters.map((filter) => (
-                    <Button
-                      key={filter}
-                      className="bg-muted dark:bg-[#1B263B] text-muted-foreground dark:text-gray-300 hover:bg-primary hover:text-primary-foreground dark:hover:bg-[#415A77] dark:hover:text-white transition-colors text-xs h-9"
-                    >
-                      {filter}
-                    </Button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Additional Filters */}
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <p className="text-muted-foreground dark:text-gray-400 text-sm font-medium text-center">Board Type</p>
-                  <div className="flex flex-wrap gap-2">
-                    {boardTypes.map((board) => (
-                      <Button
-                        key={board}
-                        className="bg-muted dark:bg-[#1B263B] text-muted-foreground dark:text-gray-300 hover:bg-primary hover:text-primary-foreground dark:hover:bg-[#415A77] dark:hover:text-white transition-colors text-xs h-9"
-                      >
-                        {board}
-                      </Button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <p className="text-muted-foreground dark:text-gray-400 text-sm font-medium text-center">Region</p>
-                  <div className="flex flex-wrap gap-2">
-                    {regions.map((region) => (
-                      <Button
-                        key={region}
-                        className="bg-muted dark:bg-[#1B263B] text-muted-foreground dark:text-gray-300 hover:bg-primary hover:text-primary-foreground dark:hover:bg-[#415A77] dark:hover:text-white transition-colors text-xs h-9"
-                      >
-                        {region}
-                      </Button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
