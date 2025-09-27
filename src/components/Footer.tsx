@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { 
@@ -85,12 +86,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link}>
-                  <a 
-                    href="#" 
+                  <Link 
+                    to="/#" 
                     className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors duration-200"
                   >
                     {link}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -102,12 +103,12 @@ const Footer = () => {
             <ul className="space-y-2 mb-6">
               {schoolTypes.slice(0, 4).map((type) => (
                 <li key={type}>
-                  <a 
-                    href="#" 
+                  <Link 
+                    to="/" 
                     className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors duration-200"
                   >
                     {type}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -116,12 +117,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {cities.slice(0, 4).map((city) => (
                 <li key={city}>
-                  <a 
-                    href="#" 
+                  <Link 
+                    to="/" 
                     className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors duration-200"
                   >
                     {city}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -131,16 +132,24 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-secondary">Our Services</h4>
             <ul className="space-y-2 mb-6">
-              {services.slice(0, 6).map((service) => (
-                <li key={service}>
-                  <a 
-                    href="#" 
-                    className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors duration-200"
-                  >
-                    {service}
-                  </a>
-                </li>
-              ))}
+              {services.slice(0, 6).map((service) => {
+                let route = "/#";
+                if (service === "Education Loans") route = "/education-loans";
+                else if (service === "Scholarships") route = "/scholarships";
+                else if (service === "School Comparison") route = "/compare-schools";
+                else if (service === "Alumni Networks") route = "/alumni-network";
+                
+                return (
+                  <li key={service}>
+                    <Link 
+                      to={route}
+                      className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors duration-200"
+                    >
+                      {service}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* Newsletter */}
@@ -181,17 +190,17 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center space-x-4 text-sm">
-              <a href="#" className="text-primary-foreground/80 hover:text-secondary transition-colors">
+              <Link to="/#" className="text-primary-foreground/80 hover:text-secondary transition-colors">
                 Privacy Policy
-              </a>
+              </Link>
               <span className="text-primary-foreground/40">|</span>
-              <a href="#" className="text-primary-foreground/80 hover:text-secondary transition-colors">
+              <Link to="/#" className="text-primary-foreground/80 hover:text-secondary transition-colors">
                 Terms of Service
-              </a>
+              </Link>
               <span className="text-primary-foreground/40">|</span>
-              <a href="#" className="text-primary-foreground/80 hover:text-secondary transition-colors">
+              <Link to="/#" className="text-primary-foreground/80 hover:text-secondary transition-colors">
                 Cookie Policy
-              </a>
+              </Link>
             </div>
           </div>
         </div>

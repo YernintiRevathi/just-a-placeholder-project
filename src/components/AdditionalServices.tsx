@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
@@ -104,11 +105,14 @@ const AdditionalServices = () => {
                 </p>
 
                 <Button 
+                  asChild
                   variant="outline" 
                   size="sm"
                   className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
                 >
-                  Learn More
+                  <Link to="/#">
+                    Learn More
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
@@ -116,27 +120,32 @@ const AdditionalServices = () => {
         </div>
 
         {/* Featured Services CTA */}
-        <div className="mt-16 bg-gradient-hero rounded-2xl p-8 md:p-12 text-center text-white animate-bounce-in">
+        <div className="mt-16 bg-gradient-hero rounded-2xl p-8 md:p-12 text-center text-primary-foreground animate-bounce-in">
           <h3 className="text-2xl md:text-3xl font-bold mb-4">
             Ready to Start Your Educational Journey?
           </h3>
-          <p className="text-lg mb-8 text-white/90 max-w-2xl mx-auto">
+          <p className="text-lg mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
             Join thousands of parents who have found the perfect school for their children. 
             Get personalized assistance and make informed decisions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
+              asChild
               size="lg"
               className="bg-secondary text-secondary-foreground hover:bg-secondary-hover shadow-hero"
             >
-              Get Started Today
+              <Link to="/">
+                Get Started Today
+              </Link>
             </Button>
             <Button 
-              variant="outline"
+              asChild
               size="lg" 
-              className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
+              className="border border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
             >
-              Schedule Counseling
+              <Link to="/#">
+                Schedule Counseling
+              </Link>
             </Button>
           </div>
         </div>

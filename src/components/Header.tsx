@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Menu, X, Phone, User } from "lucide-react";
 
 const Header = () => {
@@ -21,6 +23,7 @@ const Header = () => {
               <User className="w-4 h-4 mr-1" />
               Login
             </Button>
+            <ThemeToggle />
             <select className="bg-transparent text-muted-foreground text-sm border-none outline-none">
               <option>EN</option>
               <option>HI</option>
@@ -33,26 +36,31 @@ const Header = () => {
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold gradient-text-primary">SchoolDekho</h1>
+            <Link to="/" className="text-2xl font-bold gradient-text-primary hover:opacity-80 transition-opacity">
+              SchoolDekho
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-foreground hover:text-primary transition-colors font-medium">
+            <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium">
               Schools in City
-            </a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors font-medium">
+            </Link>
+            <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium">
               Boarding Schools
-            </a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors font-medium">
-              Junior Colleges
-            </a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors font-medium">
+            </Link>
+            <Link to="/education-loans" className="text-foreground hover:text-primary transition-colors font-medium">
               Education Loans
-            </a>
-            <a href="#" className="text-foreground hover:text-primary transition-colors font-medium">
+            </Link>
+            <Link to="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium">
               Scholarships
-            </a>
+            </Link>
+            <Link to="/alumni-network" className="text-foreground hover:text-primary transition-colors font-medium">
+              Alumni Network
+            </Link>
+            <Link to="/fundraising" className="text-foreground hover:text-primary transition-colors font-medium">
+              Fundraising
+            </Link>
             <Button variant="default" className="bg-gradient-secondary text-secondary-foreground hover:bg-secondary-hover">
               Register School
             </Button>
@@ -72,29 +80,35 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden py-4 animate-fade-in">
+            <div className="flex items-center justify-between p-2 border-b mb-4">
+              <Button variant="outline" className="flex-1 mr-2">
+                <User className="w-4 h-4 mr-1" />
+                Login
+              </Button>
+              <ThemeToggle />
+            </div>
             <nav className="flex flex-col space-y-4">
-              <a href="#" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 Schools in City
-              </a>
-              <a href="#" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              </Link>
+              <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 Boarding Schools
-              </a>
-              <a href="#" className="text-foreground hover:text-primary transition-colors font-medium py-2">
-                Junior Colleges
-              </a>
-              <a href="#" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              </Link>
+              <Link to="/education-loans" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 Education Loans
-              </a>
-              <a href="#" className="text-foreground hover:text-primary transition-colors font-medium py-2">
+              </Link>
+              <Link to="/scholarships" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
                 Scholarships
-              </a>
-              <div className="pt-2 space-y-2">
+              </Link>
+              <Link to="/alumni-network" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
+                Alumni Network
+              </Link>
+              <Link to="/fundraising" className="text-foreground hover:text-primary transition-colors font-medium py-2" onClick={() => setIsMenuOpen(false)}>
+                Fundraising
+              </Link>
+              <div className="pt-2">
                 <Button variant="default" className="w-full bg-gradient-secondary text-secondary-foreground hover:bg-secondary-hover">
                   Register School
-                </Button>
-                <Button variant="outline" className="w-full">
-                  <User className="w-4 h-4 mr-1" />
-                  Login
                 </Button>
               </div>
             </nav>

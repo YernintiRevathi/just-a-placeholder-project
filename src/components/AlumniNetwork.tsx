@@ -313,9 +313,8 @@ const AlumniNetwork = () => {
                 Register as Alumni
               </Button>
               <Button 
-                variant="outline"
                 size="lg"
-                className="border-white/30 text-white hover:bg-white/10"
+                className="border border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
               >
                 Become a Mentor
               </Button>

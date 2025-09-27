@@ -61,12 +61,11 @@ const Hero = () => {
           </div>
 
           {/* Search Form */}
-          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-hero animate-slide-up">
+          <div className="bg-white/95 dark:bg-[#0D1B2A] backdrop-blur-sm rounded-xl p-6 shadow-lg dark:shadow-2xl animate-slide-up">
             <div className="grid md:grid-cols-3 gap-4 mb-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">CATEGORY</label>
                 <Select value={schoolType} onValueChange={setSchoolType}>
-                  <SelectTrigger className="h-12 bg-background border-border">
+                  <SelectTrigger className="h-12 bg-background dark:bg-[#1B263B] border-border dark:border-[#415A77] text-foreground dark:text-white">
                     <SelectValue placeholder="Select School Type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -80,21 +79,19 @@ const Hero = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">LOCATION OR SCHOOL NAME</label>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
                   <Input
                     value={searchLocation}
                     onChange={(e) => setSearchLocation(e.target.value)}
                     placeholder="Please type school name or location"
-                    className="h-12 pl-10 bg-background border-border"
+                    className="h-12 pl-10 bg-background dark:bg-[#1B263B] border-border dark:border-[#415A77] text-foreground dark:text-white placeholder:text-muted-foreground dark:placeholder:text-gray-400"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">ACTION</label>
-                <Button className="h-12 w-full bg-gradient-secondary text-secondary-foreground hover:bg-secondary-hover font-semibold text-lg">
+                <Button className="h-12 w-full bg-[#FF8C42] hover:bg-[#FF701F] text-black font-semibold text-lg">
                   <Search className="w-5 h-5 mr-2" />
                   Search Schools
                 </Button>
@@ -103,18 +100,16 @@ const Hero = () => {
 
             {/* Quick Filters */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-foreground">Search by Filters</h3>
+              <h3 className="text-foreground dark:text-gray-300 font-semibold text-center">Search by Filters</h3>
               
               {/* Fee Range Filters */}
               <div className="space-y-2">
-                <p className="text-sm font-medium text-muted-foreground">Fee Range (Annual)</p>
+                <p className="text-muted-foreground dark:text-gray-400 text-sm font-medium text-center">Fee Range (Annual)</p>
                 <div className="flex flex-wrap gap-2">
                   {popularFilters.map((filter) => (
                     <Button
                       key={filter}
-                      variant="outline"
-                      size="sm"
-                      className="text-xs hover:bg-primary hover:text-primary-foreground transition-colors"
+                      className="bg-muted dark:bg-[#1B263B] text-muted-foreground dark:text-gray-300 hover:bg-primary hover:text-primary-foreground dark:hover:bg-[#415A77] dark:hover:text-white transition-colors text-xs h-9"
                     >
                       {filter}
                     </Button>
@@ -125,14 +120,12 @@ const Hero = () => {
               {/* Additional Filters */}
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-muted-foreground">Board Type</p>
+                  <p className="text-muted-foreground dark:text-gray-400 text-sm font-medium text-center">Board Type</p>
                   <div className="flex flex-wrap gap-2">
                     {boardTypes.map((board) => (
                       <Button
                         key={board}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs hover:bg-primary hover:text-primary-foreground transition-colors"
+                        className="bg-muted dark:bg-[#1B263B] text-muted-foreground dark:text-gray-300 hover:bg-primary hover:text-primary-foreground dark:hover:bg-[#415A77] dark:hover:text-white transition-colors text-xs h-9"
                       >
                         {board}
                       </Button>
@@ -141,14 +134,12 @@ const Hero = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <p className="text-sm font-medium text-muted-foreground">Region</p>
+                  <p className="text-muted-foreground dark:text-gray-400 text-sm font-medium text-center">Region</p>
                   <div className="flex flex-wrap gap-2">
                     {regions.map((region) => (
                       <Button
                         key={region}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs hover:bg-primary hover:text-primary-foreground transition-colors"
+                        className="bg-muted dark:bg-[#1B263B] text-muted-foreground dark:text-gray-300 hover:bg-primary hover:text-primary-foreground dark:hover:bg-[#415A77] dark:hover:text-white transition-colors text-xs h-9"
                       >
                         {region}
                       </Button>
